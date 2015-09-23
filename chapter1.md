@@ -149,3 +149,95 @@ module Rake
 >load()はコードを実行するために使い、require()はライブラリを読み込むために使う
 
 
+### 1.5 What happens when a method is called?
+
+
+Rubyはメソッドを呼び出すときに、
+
+1. メソッドを探索する
+2. 実行する。このとき、`self`が必要になる。
+
+の2つのことを必ず行っている。Rubyではこれらを理解することが非常に重要。
+
+
+#### メソッド探索について
+
+メソッドを探索する、ということを一言で表すと、
+
+「**Rubyがレシーバのクラスに入り、メソッドを見つけるまで継承チェーンを上ること**」
+
+ということ。
+
+=> "One step to the right, then up"ルール
+
+継承チェーンを調べるのにはancestors()メソッドが便利！
+
+```ruby
+MySubclass.ancestors # => [MySubclass, MyClass, Object, Kernel, BasicObject]
+```
+
+Kernelモジュールがこれに含まれている。
+
+モジュールをクラスにincludeするときは、実はRubyはそのモジュールを無名クラス(インクルードクラス、プロキシクラスと呼ばれる)でラップして、継承チェーンに挿入する。includeするクラスの真上に挿入される。
+
+(そしてこのインクルードクラスには、通常Rubyのコードからはアクセスできないようになってる。例えば、`superclass`メソッドはそんなクラスなんてありませんよ的な振る舞いをするようになっている。)
+
+そして、`print`などのインスタンスメソッドを持っているKernelモジュールは、Objectクラスが実はincludeしている。 => 全てのオブジェクトの継承チェーンにKernelモジュールが入り込むことになる！常にオブジェクトの内部にいることになるんだ。
+
+例えば`gem`。
+
+`gems/rubygems-update-1.3.3/rubygems.rb`で以下のように定義されている。
+
+
+```ruby
+module Kernel
+  def gem(gem_name, *version_requirements)
+# ...
+```
+
+なので、いきなり
+
+```ruby
+gem "rails"
+```
+
+とかできるんだ！
+
+
+
+#### selfについて
+
+self...カレントオブジェクト。メソッドを呼び出すときには、レシーバがselfになる。
+
+=> 「**Rubyの達人になりたいなら、常に`self`のオブジェクトを意識しなければならない**」
+
+selfを探すには...最後にメソッドのレシーバとなったオブジェクトを追いかければよい、簡単だ。
+
+注意: トップレベルのとき
+
+
+```
+self # => main
+self.class # => Object
+```
+
+トップレベルコンテキストのとき、selfはRubyのインタプリタがつくったmainというオブジェクトであり、mainオブジェクトの内部にいることになる。
+
+
+##### privateの本当の意味
+
+プライベートメソッドって、実は「**暗黙的なレシーバselfに対するものでなければならない**」ってだけなんだ(!!)
+
+self以外がレシーバになるオブジェクトはダメだし、self.privatemethodって、selfをつけてもダメ！（後者の場合selfを削除すればエラーは解消される）
+
+```ruby
+class C
+  def public_method
+    self.private_method
+  end
+
+  private
+
+  def private_method; end
+```
+
