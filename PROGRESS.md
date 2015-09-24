@@ -1,4 +1,4 @@
-## 2015/09/2015
+## 2015/09/20
 
 * Chapter: Introduction 
 * Pages: 1-37 (36)
@@ -17,3 +17,11 @@
   * What happens when a method is called?
   * Mechanism of `private`
 * Pages: 57-65 (8)
+
+## 2015/09/24 22:45-24:00
+
+* Chapter: 2 - Methods
+* Content: 
+  * 2.2 Dynamic Methods
+  * 2.2.1-2.3.2 method_missing()
+* Pages: 77-83
