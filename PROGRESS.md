@@ -23,5 +23,13 @@
 * Chapter: 2 - Methods
 * Content: 
   * 2.2 Dynamic Methods
-  * 2.2.1-2.3.2 method_missing()
+  * 2.3.1-2.3.2 method_missing()
 * Pages: 77-83
+
+## 2015/09/25 2:36-
+
+
+* Chapter: 2 - Methods
+* Content:
+  * 2.3 method_missing()
+* Pages: 84-85
