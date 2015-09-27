@@ -24,7 +24,7 @@
 * Content: 
   * 2.2 Dynamic Methods
   * 2.3.1-2.3.2 method_missing()
-* Pages: 77-83
+* Pages: 77-83 (6)
 
 ## 2015/09/25 2:36-
 
@@ -32,4 +32,11 @@
 * Chapter: 2 - Methods
 * Content:
   * 2.3 method_missing()
-* Pages: 84-85
+* Pages: 84-85 (2)
+
+## 2015/09/27 22:00-24:00
+
+* Chapter: 2 - Methods
+* Content: 
+  * 2.3 method_missing()
+* Pages: 84-90 (6)
