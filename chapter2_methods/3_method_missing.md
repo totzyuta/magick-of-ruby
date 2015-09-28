@@ -93,3 +93,51 @@ end
 オブジェクトがゴーストメソッドを受け取り、なんらかのロジック(メソッド名のプレフィックス以降を切り出して引数に渡すとか)を適用してから、他のオブジェクトに転送する。
 
 これを**動的プロキシ**という。
+
+では、Computerクラスをリファクタリングしてみる。
+
+```ruby
+class Computer
+  def initialize(computer_id, data_source)
+    @id = computer_id
+    @data_source = data_source
+  end
+end
+
+  def method_missing(name, *args)
+    super if !@data_source.respond_to?("get_#{name}_info")
+    info = @data_source.send("get_#{name}_info", args[0])
+    price = @data_source.send("get_#{name}_price", args[0])
+    result = "#{name.to_s.capitalize}: #{info} ($#{price})"
+    return "* #{result}" if price >= 100
+    result
+  end
+end
+```
+
+## method_missing()の二つの罠
+
+### 無限ループ
+
+method_missing()が定義されていることにより、method_missing()内のブロックで
+定義されていないメソッド呼び出された(つまりmethod_missingが呼ばれる)ときに、
+さらにmethod_missing()が呼ばれるという無限ループが起こってしまう...！
+
+
+### 標準メソッド
+
+メソッドが定義がかぶってしまった場合、method_missing()までたどり着かないので、
+不意に予想もつかない挙動をしてしまうことがある。
+
+このとき、
+
+* Module#undef_method()で継承したメソッドも含めすべてのメソッドを削除する
+* Module#remove_method()でレシーバのメソッドは削除するが、継承したメソッドはそのまま
+
+
+### おまけ: パフォーマンス
+
+Ghost methodは、その分探索時間が長くなるので実行処理時間も長くなる。
+約2倍くらい違うこともあるそう。
+
+

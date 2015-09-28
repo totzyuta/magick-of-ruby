@@ -40,3 +40,11 @@
 * Content: 
   * 2.3 method_missing()
 * Pages: 84-90 (6)
+
+## 2015/09/28 23:30-25:45
+
+* Chapter: 2 - Methods
+* Content: 
+  * 2.4 Quiz: Fix a bug
+  * 2.5 method_missing() more!
+* Pages: 91-104 (13)
