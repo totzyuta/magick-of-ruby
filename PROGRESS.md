@@ -48,3 +48,12 @@
   * 2.4 Quiz: Fix a bug
   * 2.5 method_missing() more!
 * Pages: 91-104 (13)
+
+## 2015/10/04 21:30-
+
+* Chapter 4 - Class Definition
+* Content: 
+  * 4.2 Taboo of Class
+  * 4.3 Eigenclass
+  * 4.4 Object Model of Ruby
+* Pages: 148-165 (17)
