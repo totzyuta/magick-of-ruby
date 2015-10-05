@@ -57,3 +57,10 @@
   * 4.3 Eigenclass
   * 4.4 Object Model of Ruby
 * Pages: 148-165 (17)
+
+## 2015/10/05 23:20-24:00
+
+* Chapter 5 - Kernel#eval
+* Content: 
+  * 5.2 Kernel#eval
+* Pages: 180-190 (10)
