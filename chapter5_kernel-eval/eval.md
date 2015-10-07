@@ -14,3 +14,19 @@ p ""; eval "Dir.glob("*")"
 
 このようなインジェクションを防ぐためには、evalは自分のコードだけを実行する
 ように気をつける。
+
+
+## フックメソッド
+
+Rubyにはいろんなフックメソッドがある！
+
+そしてオブジェクトモデルの重要なイベントはほとんど網羅されてる。
+例えば...
+
+* Class#inherited
+* Module#included
+* Module#extend_object
+* Module#method_added
+* method_removed
+* method_undefined
+* etc...

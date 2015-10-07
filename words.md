@@ -33,3 +33,7 @@
   * Method#call
   * Method#to_proc
 
+## 5
+
+* Class#inherited
+

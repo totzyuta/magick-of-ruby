@@ -64,3 +64,8 @@
 * Content: 
   * 5.2 Kernel#eval
 * Pages: 180-190 (10)
+
+## 2015/10/07 0:50-1:30
+
+* Chapter 5 - Kernel#eval
+* Pages: 196-210 (14)
