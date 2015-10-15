@@ -70,7 +70,7 @@
 * Chapter 5 - Kernel#eval
 * Pages: 196-210 (14)
 
-## 2015/10/15 23:15-
+## 2015/10/15 23:15-0:05
 
 * Chapter 9 - Safe Metaprogramming
-* Pages: 247-264 (13)
+* Pages: 247-266 (16)
